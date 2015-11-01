@@ -12,6 +12,7 @@ world a happier place at the same time.
 A single line will get you fields, accessors, validations and scopes,
 and a few other bits-and-bobs.
 
+Forked version with changed multiple enum flow and Mongoid5 pseudo-support
 
 # Installation
 
@@ -139,7 +140,14 @@ user.save!
 user.manager? # => true
 user.administrator? # => false
 user.roles # => [:basic, :manager]
+
+#This fork's additions
+user.roles_add(:administrator)
+user.roles_remove(:manager)
+user.roles # => [:basic, :administrator]
 ```
+
+Accessor ensures that values in enum are uniq. In other words multiple enum working as Set.
 
 Since the underlying datatype for storing values is an array, if you 
 need to specify default(s), ensure you use an array:
